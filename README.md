@@ -63,9 +63,9 @@ Rolling Standard Deviation
 Trading bands:
 
 ```
-Upper = Mean + Std
+Upper = Mean + 2*Std
 
-Lower = Mean − Std
+Lower = Mean − 2*Std
 ```
 
 Entry rules:
