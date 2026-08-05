@@ -11,7 +11,31 @@ Synthetic Future = Call − Put + Strike
 The strategy investigates whether the spread between the listed index futures and synthetic futures exhibits mean reversion, and evaluates the profitability after incorporating realistic transaction costs.
 
 The project is inspired by the statistical arbitrage framework discussed in the CITIC Futures research report, while the complete backtesting framework, contract selection logic and implementation are independently developed.
+# Results
 
+The framework generates:
+
+- Net value curve
+- Basis movement analysis
+- Abnormal event detection
+- Automated attribution report
+
+
+## Backtest Performance
+
+### Net Value Curve
+
+![Net Value Curve](outputs/figures/MO-IM%20Arbitrage%20Net%20Value%20Curve.png)
+
+
+### Basis Attribution Analysis
+
+![Basis Attribution](outputs/figures/IM_MO_Basis_Attribution_Summary.png)
+
+
+### Synthetic Futures Backtest
+
+![Synthetic Futures Backtest](outputs/figures/MO%20synthetic%20future%20-%20IM%20arbitrage%20backtest.png)
 ---
 
 ## Strategy
