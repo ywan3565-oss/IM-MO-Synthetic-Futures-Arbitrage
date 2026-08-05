@@ -1,0 +1,7 @@
+date,event_type,event_name,importance,source
+2024-01-18,Contract,Monthly Contract Roll,High,Manual
+2024-02-05,Market,Small-Cap Market Stress,High,Manual
+2024-09-24,Policy,Policy Stimulus Announcement,High,Manual
+2024-09-30,Calendar,Quarter-End Rebalancing,Medium,Manual
+2024-10-08,Holiday,First Trading Day After National Day Holiday,Medium,Manual
+2025-02-21,Contract,Monthly Derivatives Expiry,High,Manual
