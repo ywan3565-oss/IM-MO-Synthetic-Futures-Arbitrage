@@ -55,6 +55,45 @@ The backtest is performed using one IM futures contract combined with two MO cal
 | Final Gross NAV | 1.0767 |
 | Final Net NAV | 1.0564 |
 | Win Rate | 100% |
+## Automated Abnormal Basis Analysis
+
+Beyond traditional backtesting, this project implements an automated basis anomaly detection and attribution framework.
+
+The workflow contains:
+
+1. Rolling statistical detection
+
+   - Calculate rolling mean and volatility of basis
+   - Identify statistically abnormal deviations
+   - Record extreme basis events
+
+
+2. Event calendar matching
+
+   - Match abnormal basis movements with predefined events
+   - Include:
+     - Macroeconomic events
+     - Market holidays
+     - Major financial events
+
+
+3. Automated attribution report generation
+
+   The framework produces:
+
+   - Abnormal basis event table
+   - Event matching results
+   - Attribution summary report
+   - Bilingual research report (Chinese / English)
+
+
+Generated outputs:
+
+- `outputs/abnormal_basis_events.csv`
+- `outputs/attribution_results.csv`
+- `outputs/attribution_with_events.csv`
+- `outputs/IM_MO_Research_Report.md`
+- `outputs/IM_MO_研究报告.md`
 ## Visualization
 
 ### Net Value Curve
@@ -263,8 +302,8 @@ IM-MO-Synthetic-Futures-Arbitrage
 ├── README.md
 │
 └── .gitignore
----
----
+
+```
 
 ## Future Improvements
 
