@@ -1,204 +1,215 @@
-# IM-MO Synthetic Futures Statistical Arbitrage Backtest
+# IM-MO Synthetic Futures Arbitrage Research
 
-## Overview
+A quantitative research framework for identifying and explaining abnormal basis movements between the CSI 1000 Index Futures (IM) and synthetic futures constructed from CSI 1000 Index Options (MO).
 
-This project implements a statistical arbitrage backtest between CSI 1000 Index Futures (IM) and CSI 1000 Index Options (MO) synthetic futures.
+The project provides an end-to-end workflow including:
 
-The synthetic futures price is constructed using the put-call parity relationship:
-
-Synthetic Future = Call − Put + Strike
-
-The strategy investigates whether the spread between the listed index futures and synthetic futures exhibits mean reversion, and evaluates the profitability after incorporating realistic transaction costs.
-
-The project is inspired by the statistical arbitrage framework discussed in the CITIC Futures research report, while the complete backtesting framework, contract selection logic and implementation are independently developed.
-
----
-
-## Strategy
-
-### 1. Contract Selection
-
-For each trading day:
-
-- Select the active IM futures contract
-- Filter MO options satisfying
-
-```
-ATM_distance = |Strike − Spot| / Spot < 5%
-```
-
-- Choose the strike with the highest trading volume
-- Construct synthetic futures
-
-```
-Synthetic = Call − Put + Strike
-```
+- Synthetic futures construction
+- Basis calculation
+- Statistical anomaly detection
+- Attribution analysis
+- Event calendar matching
+- Automatic bilingual research report generation
 
 ---
 
-### 2. Spread Construction
+# Workflow
 
 ```
-Basis = IM Futures − Synthetic Futures
-```
-
-A positive basis indicates that futures are relatively expensive.
-
-A negative basis indicates that synthetic futures are relatively expensive.
-
----
-
-### 3. Signal Generation
-
-Rolling statistics are computed using historical information only.
-
-```
-Window = 100 days
-
-Rolling Mean
-
-Rolling Standard Deviation
-```
-
-Trading bands:
-
-```
-Upper = Mean + 2*Std
-
-Lower = Mean − 2*Std
-```
-
-Entry rules:
-
-- Basis > Upper
-    → Short Basis
-
-- Basis < Lower
-    → Long Basis
-
----
-
-### 4. Exit Rules
-
-The position is closed when
-
-- Basis reverts to the rolling mean
-
-or
-
-- Contract expiration
-
-or
-
-- Contract rollover
-
----
-
-## Transaction Cost Model
-
-The backtest considers
-
-- IM futures trading fee
-- IM delivery fee
-- MO option trading fee
-- MO exercise fee
-- Market impact
-- Position scaling
-
-Both gross profit and net profit are reported.
-
----
-
-## Backtesting Framework
-
-```
-Market Data
-
-↓
-
-Contract Selection
-
-↓
-
+Raw Market Data
+        │
+        ▼
 Synthetic Futures Construction
-
-↓
-
+        │
+        ▼
 Basis Calculation
-
-↓
-
+        │
+        ▼
 Rolling Statistics
-
-↓
-
-Trading Signal
-
-↓
-
-Position Management
-
-↓
-
-PnL Calculation
-
-↓
-
-Transaction Cost
-
-↓
-
-Performance Evaluation
+        │
+        ▼
+Abnormal Event Detection
+        │
+        ▼
+Basis Attribution Engine
+        │
+        ▼
+Event Calendar Matching
+        │
+        ▼
+Automatic Research Report
 ```
 
 ---
 
-## Performance Metrics
+# Features
 
-The backtest reports
+## 1. Synthetic Futures Construction
 
-- Total Gross Profit
-- Total Net Profit
-- Annualized Return
-- Win Rate
-- Sharpe Ratio
-- Profit Factor
-- Maximum Drawdown
-- Average Holding Period
-
----
-
-## Project Structure
+Construct synthetic futures using
 
 ```
-.
-├── notebooks/
-│   └── IM_MO_Mean_Reversion_Backtest.ipynb
-│
-├── figures/
-│   ├── basis.png
-│   ├── equity_curve.png
-│   └── drawdown.png
-│
-├── README.md
-└── requirements.txt
+Synthetic Future
+=
+Call
+− Put
++ Strike
+```
+
+and compare against IM futures settlement prices.
+
+---
+
+## 2. Basis Analysis
+
+Calculate
+
+```
+Basis
+=
+Synthetic Future
+− IM Futures
+```
+
+or
+
+```
+Basis
+=
+IM Futures
+− Synthetic Future
+```
+
+depending on research definition.
+
+Rolling statistics include
+
+- Rolling Mean
+- Rolling Standard Deviation
+- Z-score
+- Basis Change
+
+---
+
+## 3. Automatic Abnormal Event Detection
+
+Detect statistically significant basis movements using
+
+- Rolling Z-score
+- Daily Basis Change
+- Minimum event spacing
+
+Output:
+
+- abnormal_basis_events.csv
+
+---
+
+## 4. Basis Attribution Engine
+
+For every abnormal event the engine evaluates
+
+- Contract Roll
+- Strike Change
+- Near Expiry
+- IM Contribution
+- MO Contribution
+- Dominant Leg
+- Confidence Score
+
+Automatically identifies the primary reason for each abnormal basis movement.
+
+---
+
+## 5. Event Calendar Matching
+
+Abnormal events are matched with an external event calendar.
+
+Examples include
+
+- Contract Roll
+- Holiday
+- Economic Release
+- Policy Announcement
+- Exchange Adjustment
+
+Outputs
+
+- matched event
+- event importance
+- event distance
+
+---
+
+## 6. Automatic Research Report
+
+Generate
+
+- English Markdown Report
+- Chinese Markdown Report
+
+Each report contains
+
+- abnormal event summary
+- attribution result
+- matched event
+- confidence
+- research explanation
+
+---
+
+# Project Structure
+
+```
+src/
+    attribution.py
+    event_calendar.py
+    report_generator.py
+    visualization.py
+
+data/
+    event_calendar.csv
+
+outputs/
+    attribution_results.csv
+    attribution_with_events.csv
+    IM_MO_Research_Report.md
+    IM_MO_研究报告.md
+
+MO-IM synthetic future arbitrage backtest.ipynb
+README.md
 ```
 
 ---
 
-## Future Improvements
+# Example Output
 
-- Lock option contracts after opening positions
-- Introduce bid-ask spread using tick data
-- Dynamic market impact estimation
-- Walk-forward parameter validation
-- Portfolio-level capital allocation
-- Multi-contract statistical arbitrage
+For every abnormal event
+
+| Date | Basis | Primary Reason | Dominant Leg | Event |
+|------|------:|---------------|-------------|-------|
+|2024-01-18|81.0|Contract Roll|IM|Monthly Contract Roll|
+|2024-09-30|228.6|Basis Jump|Mixed|National Day Holiday|
 
 ---
 
-## Disclaimer
+# Future Development
 
-This project is intended solely for educational and research purposes.
+Planned improvements include
 
-It does not constitute investment advice.
+- Automatic financial news collection
+- LLM-assisted event explanation
+- PDF report generation
+- Interactive dashboard
+- Real-time monitoring
+- Multi-asset support
+
+---
+
+# Disclaimer
+
+This repository is intended for quantitative research and educational purposes only.
+
+No investment advice is provided.
+
+Market data are not included in this repository.
