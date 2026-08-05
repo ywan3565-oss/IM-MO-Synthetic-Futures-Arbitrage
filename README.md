@@ -19,7 +19,21 @@ The framework generates:
 - Basis movement analysis
 - Abnormal event detection
 - Automated attribution report
+## Visualization
 
+### Net Value Curve
+
+![Net Value Curve](outputs/figures/MO-IM%20Arbitrage%20Net%20Value%20Curve.png)
+
+
+### Basis Attribution Analysis
+
+![Basis Attribution](outputs/figures/IM_MO_Basis_Attribution_Summary.png)
+
+
+### Synthetic Futures Backtest
+
+![Synthetic Futures Backtest](outputs/figures/MO%20synthetic%20future%20-%20IM%20arbitrage%20backtest.png)
 
 ## Backtest Performance
 
