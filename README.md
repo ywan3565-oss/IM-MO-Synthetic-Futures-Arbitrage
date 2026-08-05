@@ -228,21 +228,41 @@ The backtest reports
 
 ---
 
+
 ## Project Structure
 
-```
-.
-├── notebooks/
-│   └── IM_MO_Mean_Reversion_Backtest.ipynb
+```text
+IM-MO-Synthetic-Futures-Arbitrage
 │
-├── figures/
-│   ├── basis.png
-│   ├── equity_curve.png
-│   └── drawdown.png
+├── data/
+│   ├── event_calendar.csv
+│   └── final_data_for_backtest.csv
+│
+├── outputs/
+│   ├── figures/
+│   │   ├── IM_MO_Basis_Attribution_Summary.png
+│   │   ├── MO synthetic future - IM arbitrage backtest.png
+│   │   └── MO-IM Arbitrage Net Value Curve.png
+│   │
+│   ├── IM_MO_Research_Report.md
+│   ├── IM_MO_研究报告.md
+│   ├── abnormal_basis_events.csv
+│   ├── attribution_results.csv
+│   ├── attribution_with_events.csv
+│   └── final_data.csv
+│
+├── src/
+│   ├── attribution.py
+│   ├── event_analysis.py
+│   ├── event_calendar.py
+│   ├── report_generator.py
+│   └── visualization.py
+│
+├── MO-IM synthetic future arbitrage backtest.ipynb
 │
 ├── README.md
-└── requirements.txt
-```
+│
+└── .gitignore
 
 ---
 
