@@ -19,6 +19,41 @@ The framework generates:
 - Basis movement analysis
 - Abnormal event detection
 - Automated attribution report
+## Backtest Summary
+
+The backtest is performed using one IM futures contract combined with two MO call options and two MO put options.
+
+### Trading Configuration
+
+| Parameter | Value |
+|---|---:|
+| Number of Trades | 47 |
+| Position Size | 1 Group |
+| Strategy Structure | Long/Short IM + 2 Call + 2 Put |
+| Market Impact | 0.08% |
+
+### Transaction Cost Assumption
+
+| Cost Item | Value |
+|---|---:|
+| MO Trading Fee | 15 RMB / contract |
+| MO Exercise Fee | 2 RMB / contract |
+| IM Trading Fee | 0.23 bp |
+| IM Delivery Fee | 1 bp |
+| Market Impact | 0.08% |
+
+### Performance Summary
+
+| Metric | Result |
+|---|---:|
+| Gross Profit | 767,200 RMB |
+| Total Transaction Cost | 203,559 RMB |
+| Net Profit | 563,641 RMB |
+| Return Before Cost | 7.672% |
+| Return After Cost | 5.636% |
+| Final Gross NAV | 1.0767 |
+| Final Net NAV | 1.0564 |
+| Win Rate | 100% |
 ## Visualization
 
 ### Net Value Curve
