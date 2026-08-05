@@ -263,7 +263,7 @@ IM-MO-Synthetic-Futures-Arbitrage
 ├── README.md
 │
 └── .gitignore
-
+---
 ---
 
 ## Future Improvements
