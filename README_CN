@@ -1,0 +1,252 @@
+# IM-MO 合成期货套利研究框架
+
+> 一个面向中证1000股指期货（IM）与中证1000ETF期权（MO）的量化研究框架，用于识别、解释并自动生成异常基差分析报告。
+
+本项目实现了从市场数据到研究报告的完整自动化流程，包括：
+
+- 合成期货构建
+- 基差计算
+- 异常事件检测
+- 基差归因分析
+- 事件日历匹配
+- 中英文研究报告自动生成
+
+---
+
+# 项目流程
+
+```text
+市场数据
+    │
+    ▼
+构建 MO 合成期货
+    │
+    ▼
+计算 IM-MO 基差
+    │
+    ▼
+滚动统计分析
+    │
+    ▼
+异常事件检测
+    │
+    ▼
+基差归因分析
+    │
+    ▼
+事件日历匹配
+    │
+    ▼
+自动生成研究报告
+```
+
+---
+
+# 主要功能
+
+## ① 合成期货构建
+
+依据期权平价关系：
+
+```
+MO Synthetic Future
+=
+Call
+− Put
++ Strike
+```
+
+构建 MO 合成期货价格，并与 IM 股指期货进行比较。
+
+---
+
+## ② 基差分析
+
+支持两种定义：
+
+```
+Basis = Synthetic Future − IM
+```
+
+或
+
+```
+Basis = IM − Synthetic Future
+```
+
+自动计算：
+
+- Basis
+- Rolling Mean
+- Rolling Std
+- Z-score
+- Daily Basis Change
+
+---
+
+## ③ 异常事件检测
+
+利用滚动统计自动识别异常基差波动。
+
+支持：
+
+- Rolling Z-score
+- Basis Change
+- 最小事件间隔过滤
+
+输出：
+
+```
+abnormal_basis_events.csv
+```
+
+---
+
+## ④ 基差归因分析
+
+针对每一个异常事件，自动判断：
+
+- 是否发生换月（Contract Roll）
+- 是否更换行权价（Strike Change）
+- 是否临近到期（Near Expiry）
+- IM 对基差变化贡献
+- MO 对基差变化贡献
+- 主导腿（Dominant Leg）
+- 归因置信度（Confidence）
+
+最终自动给出：
+
+> Primary Reason（主要原因）
+
+例如：
+
+- Contract Roll
+- Basis Jump
+- IM Price Contribution
+- Mixed Price Contribution
+
+---
+
+## ⑤ 事件日历匹配
+
+将异常事件自动与外部事件日历进行匹配。
+
+支持：
+
+- 合约换月
+- 节假日
+- CPI / PMI
+- 央行政策
+- 重大宏观事件
+- 交易所规则调整
+
+自动输出：
+
+- 匹配事件
+- 事件重要性
+- 时间距离
+
+---
+
+## ⑥ 自动生成研究报告
+
+自动生成：
+
+- 英文 Markdown 报告
+- 中文 Markdown 报告
+
+每份报告包含：
+
+- 异常事件概述
+- 基差变化分析
+- 主要归因结果
+- 事件匹配结果
+- 研究解释
+- 置信度分析
+
+---
+
+# 项目结构
+
+```
+src/
+│
+├── attribution.py
+├── event_calendar.py
+├── report_generator.py
+├── visualization.py
+│
+data/
+│
+├── event_calendar.csv
+│
+outputs/
+│
+├── abnormal_basis_events.csv
+├── attribution_results.csv
+├── attribution_with_events.csv
+├── IM_MO_Research_Report.md
+├── IM_MO_研究报告.md
+│
+MO-IM synthetic future arbitrage backtest.ipynb
+README.md
+README_CN.md
+```
+
+---
+
+# 输出示例
+
+| 日期 | Basis | 主要原因 | 主导腿 | 匹配事件 |
+|------|------:|---------|--------|----------|
+|2024-01-18|81.0|Contract Roll|IM|Monthly Contract Roll|
+|2024-09-30|228.6|Basis Jump|Mixed|National Day Holiday|
+
+---
+
+# 后续开发计划
+
+下一阶段计划包括：
+
+- 自动财经新闻抓取
+- LLM 自动生成事件解释
+- PDF 研究报告
+- 可视化 Dashboard
+- 实时监控
+- 多资产支持
+
+---
+
+# 技术栈
+
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Jupyter Notebook
+
+---
+
+# 项目特点
+
+✅ IM-MO 合成期货套利研究
+
+✅ 自动异常检测
+
+✅ 自动归因分析
+
+✅ 自动事件匹配
+
+✅ 自动生成中英文研究报告
+
+✅ 模块化设计
+
+---
+
+# 免责声明
+
+本项目仅用于量化研究与学术交流。
+
+不构成任何投资建议。
+
+由于数据授权限制，本仓库不包含市场原始数据，仅保留分析框架与示例输出。
