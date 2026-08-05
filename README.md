@@ -45,7 +45,8 @@ The backtest is performed using one IM futures contract combined with two MO cal
 ### Performance Summary
 
 | Metric | Result |
-|---|---:|
+|---|---|
+|initial captial|10,000,000 RMB|
 | Gross Profit | 767,200 RMB |
 | Total Transaction Cost | 203,559 RMB |
 | Net Profit | 563,641 RMB |
